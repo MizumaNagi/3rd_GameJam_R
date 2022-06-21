@@ -20,6 +20,8 @@ public class PhotoCamera : MonoBehaviour
     private ActionTimer takeTimer = new ActionTimer();
     private bool enableTakePhoto = false;
 
+    private List<Texture2D> takenPhotoList = new List<Texture2D>();
+
     private void Awake()
     {
         projectionCamera = GetComponentInChildren<Camera>();
@@ -52,6 +54,8 @@ public class PhotoCamera : MonoBehaviour
     {
         enableTakePhoto = true;
         enableTakeLamp.color = Color.green;
+
+        AudioManager.Instance.PlaySE("CameraShutterOpen");
     }
 
     /// <summary>
@@ -90,5 +94,14 @@ public class PhotoCamera : MonoBehaviour
 
         takeTimer.ResetTimer();
         SetDisableToTakePhoto();
+
+        AudioManager.Instance.PlaySE("CameraShutter");
+
+        // éBÇ¡ÇΩé ê^ÇÉäÉXÉgÇ…í«â¡Ç∑ÇÈ
+        RenderTexture cameraTexture = projectionCamera.targetTexture;
+        Texture2D takenPhoto = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.ARGB32, false);
+        Graphics.CopyTexture(projectionCamera.targetTexture, takenPhoto);
+
+        takenPhotoList.Add(takenPhoto);
     }
 }

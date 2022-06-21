@@ -17,5 +17,7 @@ public class PhotoTarget : MonoBehaviour
     public virtual void OnTakenPhoto()
     {
         GameSceneProperties.Instance.AddGameScore(takeScore);
+
+        Destroy(gameObject);
     }
 }
