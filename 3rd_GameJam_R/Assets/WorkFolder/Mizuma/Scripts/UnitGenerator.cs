@@ -5,33 +5,47 @@ using UnityEngine;
 public class UnitGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject unitPrefab;
+    [SerializeField] private ObjectPool objectPool;
     [SerializeField] private UnitSpawnInfos unitSpawnInfos;
     [SerializeField] private SpawnDataSetting spawnDataSetting;
-
-    private UnitSpawnInfo targetSpawnInfo;
 
     private void Start()
     {
         unitSpawnInfos.Init();
 
-        targetSpawnInfo = unitSpawnInfos.GetNextSpawnInfo();
-        StartCoroutine(Generate(targetSpawnInfo.spawnDelaySecond, 0, targetSpawnInfo.spawnCount));
+        while(true)
+        {
+            UnitSpawnInfo targetSpawnGroup = unitSpawnInfos.GetNextSpawnInfo();
+            if (targetSpawnGroup == null) break;
+            StartCoroutine(WaitPop(targetSpawnGroup));
+        }
     }
 
-    private IEnumerator Generate(float delayTime, int unitArrIndex, int unitArrLength)
+    private IEnumerator WaitPop(UnitSpawnInfo targetSpawnInfo)
     {
-        yield return new WaitForSeconds(delayTime);
-        GameObject newObj = Instantiate(unitPrefab,
-            spawnDataSetting.baseSpawnPos + spawnDataSetting.spawnPosEachFormations[(int)targetSpawnInfo.unitFormation].posArr[unitArrIndex],
-            Quaternion.identity);
+        float waitTime = targetSpawnInfo.startTime;
+        yield return new WaitForSeconds(waitTime);
+        StartCoroutine(Pop(targetSpawnInfo, 0));
+    }
 
-        newObj.transform.RotateAround(Vector3.zero, Vector3.up, targetSpawnInfo.spawnRotation);
-        newObj.GetComponent<UnitAnimation>().Init(
+    private IEnumerator Pop(UnitSpawnInfo targetSpawnInfo, int currentUnitIndex)
+    {
+        float delayTime = targetSpawnInfo.spawnDelaySecond;
+        int unitArrLength = targetSpawnInfo.spawnCount;
+
+        yield return new WaitForSeconds(delayTime);
+        GameObject popUnit = objectPool.GetObject<PoolableObject>().gameObject;
+        popUnit.transform.position = spawnDataSetting.baseSpawnPos
+            + spawnDataSetting.spawnPosEachFormations[(int)targetSpawnInfo.unitFormation].posArr[currentUnitIndex];
+        popUnit.transform.rotation = Quaternion.identity;
+
+        popUnit.transform.RotateAround(Vector3.zero, Vector3.up, targetSpawnInfo.spawnRotation);
+        popUnit.GetComponent<UnitAnimation>().Init(
             targetSpawnInfo.unitMoveStyle,
             targetSpawnInfo.unitArriveMoveStyle,
             spawnDataSetting.speedMultiArr[(int)targetSpawnInfo.unitMoveSpeed]);
 
-        unitArrIndex++;
-        if (unitArrIndex < unitArrLength) StartCoroutine(Generate(delayTime, unitArrIndex, unitArrLength));
+        currentUnitIndex++;
+        if (currentUnitIndex < unitArrLength) StartCoroutine(Pop(targetSpawnInfo, currentUnitIndex));
     }
 }

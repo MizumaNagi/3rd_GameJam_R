@@ -13,19 +13,12 @@ MonoBehaviour:
   m_Name: UnitSpawnInfos
   m_EditorClassIdentifier: 
   unitSpawnInfos:
-  - unitType: 0
-    spawnCount: 5
+  - startTime: 0
+    unitType: 0
+    spawnCount: 10
     spawnRotation: 135
-    spawnDelaySecond: 0.5
+    spawnDelaySecond: 0
     unitMoveSpeed: 1
     unitFormation: 5
     unitMoveStyle: 0
     unitArriveMoveStyle: 2
-  - unitType: 1
-    spawnCount: 1
-    spawnRotation: 180
-    spawnDelaySecond: 0
-    unitMoveSpeed: 4
-    unitFormation: 7
-    unitMoveStyle: 3
-    unitArriveMoveStyle: 0

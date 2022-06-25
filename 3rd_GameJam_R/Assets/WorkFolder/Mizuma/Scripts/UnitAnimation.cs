@@ -30,7 +30,6 @@ public class UnitAnimation : MonoBehaviour
 
     private void OnArriveMove()
     {
-        Debug.Log("Destroy");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

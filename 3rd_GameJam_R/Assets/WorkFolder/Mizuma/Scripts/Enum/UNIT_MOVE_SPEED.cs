@@ -1,3 +1,6 @@
+/// <summary>
+/// ’¹‚ÌˆÚ“®‘¬“x
+/// </summary>
 public enum UNIT_MOVE_SPEED
 {
     VERY_SLOW,
