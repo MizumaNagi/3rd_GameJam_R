@@ -21,6 +21,7 @@ public class PhotoCamera : MonoBehaviour
     private bool enableTakePhoto = false;
 
     private List<Texture2D> takenPhotoList = new List<Texture2D>();
+    public List<Texture2D> TakenPhotoList => takenPhotoList;
 
     private void Awake()
     {
