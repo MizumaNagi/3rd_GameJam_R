@@ -1,6 +1,0 @@
-public enum UNIT_ARRIVE_MOVE_STYLE
-{
-    IGNORE,
-    LIVITATING,
-    TURN_PLAYER
-}
