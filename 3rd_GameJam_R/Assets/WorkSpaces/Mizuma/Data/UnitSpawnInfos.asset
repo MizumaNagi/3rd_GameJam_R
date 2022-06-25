@@ -15,7 +15,7 @@ MonoBehaviour:
   unitSpawnInfos:
   - startTime: 0
     unitType: 0
-    spawnCount: 1
+    spawnCount: 10
     spawnRotation: 0
     spawnDelaySecond: 0
     unitMoveSpeed: 1
