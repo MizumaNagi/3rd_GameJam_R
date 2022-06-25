@@ -82,12 +82,11 @@ public class PhotoCamera : MonoBehaviour
             Vector3 targetViewPoint = projectionCamera.WorldToViewportPoint(photoTarget.TargetOriginTrans.position);
             // 対象物が撮る判定の有効範囲に入っていない場合は対象外
             if (!takeValidRect.Contains(targetViewPoint)) continue;
-
             Vector3 cameraPosition = projectionCamera.transform.position;
             Vector3 targetDirection = photoTarget.TargetOriginTrans.position - cameraPosition;
             // カメラから対象物に向けてRayを飛ばし、対象物にヒットしなかった場合は対象外
             if (!Physics.Raycast(projectionCamera.transform.position, targetDirection, out targetRaycastHit, takeMaxDistance)) continue;
-            if (targetRaycastHit.transform.root != photoTarget.transform) continue;
+            if (targetRaycastHit.transform.GetComponentInParent<PhotoTarget>().transform != photoTarget.transform) continue;
 
             photoTarget.OnTakenPhoto();
         }

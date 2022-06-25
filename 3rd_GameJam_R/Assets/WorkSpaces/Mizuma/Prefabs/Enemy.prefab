@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6870222359795776069}
   - component: {fileID: 4118946860037381786}
   - component: {fileID: 1768774681685061248}
+  - component: {fileID: -8595460533627125944}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: PhotoTarget
@@ -80,6 +81,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dda2b21383d95734795d1c10e7a1686d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8595460533627125944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239077981043884107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e68f292379ceff4ba4c653677532bdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeScore: 10
+  targetOriginTrans: {fileID: 6921616114914919254}
 --- !u!1 &9165605996901960502
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +200,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 473f39a9832887a4e9c7d5f4352e18f9, type: 3}
+--- !u!4 &6921616114914919254 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3678518339274167591, guid: 473f39a9832887a4e9c7d5f4352e18f9, type: 3}
+  m_PrefabInstance: {fileID: 5981411285389923953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6921727071522587332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3678552244470600885, guid: 473f39a9832887a4e9c7d5f4352e18f9, type: 3}
