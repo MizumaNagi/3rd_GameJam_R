@@ -35,7 +35,7 @@ public class UnitGenerator : MonoBehaviour
 
         yield return new WaitForSeconds(delayTime);
         GameObject popUnit = objectPool.GetObject<PoolableObject>().gameObject;
-        popUnit.transform.position = spawnDataSetting.baseSpawnPos
+        popUnit.transform.localPosition = spawnDataSetting.baseSpawnPos
             + spawnDataSetting.spawnPosEachFormations[(int)targetSpawnInfo.unitFormation].posArr[currentUnitIndex];
         popUnit.transform.rotation = Quaternion.identity;
 
