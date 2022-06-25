@@ -86,7 +86,11 @@ public class PhotoCamera : MonoBehaviour
             Vector3 targetDirection = photoTarget.TargetOriginTrans.position - cameraPosition;
             // カメラから対象物に向けてRayを飛ばし、対象物にヒットしなかった場合は対象外
             if (!Physics.Raycast(projectionCamera.transform.position, targetDirection, out targetRaycastHit, takeMaxDistance)) continue;
-            if (targetRaycastHit.transform.GetComponentInParent<PhotoTarget>().transform != photoTarget.transform) continue;
+
+            PhotoTarget raycastHitPhotoTarget = targetRaycastHit.transform.GetComponentInParent<PhotoTarget>();
+            // RayがヒットしたオブジェクトにPhotoTargetコンポーネントがなければ対象外
+            if (raycastHitPhotoTarget == null) continue;
+            if (raycastHitPhotoTarget.transform != photoTarget.transform) continue;
 
             photoTarget.OnTakenPhoto();
         }
