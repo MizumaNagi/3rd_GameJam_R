@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestFPSCamera : MonoBehaviour
 {
     [SerializeField] private float cameraSensitivity;
-    [SerializeField] private int rotLimit;
+    [SerializeField, Range(10, 40)] private int rotLimit;
 
     private Transform myTransform;
 
