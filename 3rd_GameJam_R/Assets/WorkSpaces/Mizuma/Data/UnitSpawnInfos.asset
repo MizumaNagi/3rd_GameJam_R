@@ -18,7 +18,7 @@ MonoBehaviour:
     spawnCount: 10
     spawnRotation: 0
     spawnDelaySecond: 0
-    unitMoveSpeed: 1
+    unitMoveSpeed: 4
     unitFormation: 4
-    unitMoveStyle: 0
-    unitArriveMoveStyle: 2
+    unitMoveStyle: 3
+    unitArriveMoveStyle: 0
