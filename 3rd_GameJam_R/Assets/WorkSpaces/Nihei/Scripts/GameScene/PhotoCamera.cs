@@ -21,7 +21,8 @@ public class PhotoCamera : MonoBehaviour
     private bool enableTakePhoto = false;
 
     private List<Texture2D> takenPhotoList = new List<Texture2D>();
-    public List<Texture2D> TakenPhotoList => takenPhotoList;
+    private List<int> copyCntList = new List<int>();
+    private List<float> birdMinDistanceList = new List<float>();
 
     private void Awake()
     {
@@ -75,6 +76,8 @@ public class PhotoCamera : MonoBehaviour
     {
         GameObject[] photoTargetObjs = GameObject.FindGameObjectsWithTag(LayerTagUtil.TagNamePhotoTarget);
         RaycastHit targetRaycastHit;
+        int copyCntInPhoto = 0;
+        float birdMinDistance = Mathf.Infinity;
         foreach(GameObject photoTargetObj in photoTargetObjs)
         {
             PhotoTarget photoTarget = photoTargetObj.GetComponent<PhotoTarget>();
@@ -94,6 +97,11 @@ public class PhotoCamera : MonoBehaviour
             if (raycastHitPhotoTarget.transform != photoTarget.transform) continue;
 
             photoTarget.OnTakenPhoto();
+
+            // 撮影数カウント, 鳥とカメラの最短距離更新確認
+            copyCntInPhoto++;
+            float targetDistance = targetRaycastHit.distance;
+            if (targetDistance < birdMinDistance) birdMinDistance = targetDistance;
         }
 
         takeTimer.ResetTimer();
@@ -103,9 +111,18 @@ public class PhotoCamera : MonoBehaviour
 
         // 撮った写真をリストに追加する
         RenderTexture cameraTexture = projectionCamera.targetTexture;
-        Texture2D takenPhoto = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.ARGB32, false);
+        Texture2D takenPhoto = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.RGBA32, false);
         Graphics.CopyTexture(projectionCamera.targetTexture, takenPhoto);
 
+        Debug.Log($"copyCnt: {copyCntInPhoto} / distance: {birdMinDistance}");
+
         takenPhotoList.Add(takenPhoto);
+        copyCntList.Add(copyCntInPhoto);
+        birdMinDistanceList.Add(birdMinDistance);
+    }
+
+    public (Texture2D[], int[], float[]) GetAllPhotoInfo()
+    {
+        return (takenPhotoList.ToArray(), copyCntList.ToArray(), birdMinDistanceList.ToArray());
     }
 }

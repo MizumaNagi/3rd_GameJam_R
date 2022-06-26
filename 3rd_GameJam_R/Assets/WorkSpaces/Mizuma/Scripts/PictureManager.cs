@@ -6,20 +6,39 @@ using UnityEngine.UI;
 
 public class PictureManager : MonoBehaviour
 {
+    [SerializeField] private ResultUI resultUI;
     [SerializeField] private Image backImg;
-    public Image BackImg => backImg;
     [SerializeField] private Canvas backCanvas;
     [SerializeField] private Image frontImg;
-    public Image FrontImg => frontImg;
     [SerializeField] private Canvas frontCanvas;
 
     private Texture2D[] pictures;
-    private int currentPicIndex = 0;
+    public int[] copyCntArr;
+    public float[] minObjDistanceArr;
+    public int currentPicIndex = 0;
+    private int currentInfoIndex = 0;
 
-    public void GetAllPicture(List<Texture2D> pictures)
+    public Image BackImg => backImg;
+    public Image FrontImg => frontImg;
+    public int[] CopyCntArr => copyCntArr;
+    public float[] MinObjDistanceArr => minObjDistanceArr;
+
+    public void GetAllPicture(Texture2D[] pictures, int[] copyObjArr, float[] minObjDistanceArr)
     {
-        Array.Resize<Texture2D>(ref this.pictures, pictures.Count);
-        this.pictures = pictures.ToArray();
+        Array.Resize<Texture2D>(ref this.pictures, pictures.Length);
+        this.pictures = pictures;
+
+        Array.Resize<int>(ref this.copyCntArr, copyObjArr.Length);
+        this.copyCntArr = copyObjArr;
+
+        Array.Resize<float>(ref this.minObjDistanceArr, minObjDistanceArr.Length);
+        this.minObjDistanceArr = minObjDistanceArr;
+    }
+
+    public void UpdateUI()
+    {
+        resultUI.UpdateInfoUI(copyCntArr[currentInfoIndex], minObjDistanceArr[currentInfoIndex]);
+        currentInfoIndex++;
     }
 
     public Sprite GetNextTexture()
@@ -44,5 +63,15 @@ public class PictureManager : MonoBehaviour
             backCanvas.sortingOrder = 0;
             frontCanvas.sortingOrder = 1;
         }
+    }
+
+    public void UpdateTotalUIFirstColumn()
+    {
+        resultUI.UpdateTotalUIFirstColumn();
+    }
+
+    public void UpdateTotalUISecondColumn()
+    {
+        resultUI.UpdateTotalUISecondColumn();
     }
 }
