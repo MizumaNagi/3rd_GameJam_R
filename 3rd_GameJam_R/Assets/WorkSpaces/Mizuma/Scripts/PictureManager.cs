@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,29 @@ using UnityEngine.UI;
 public class PictureManager : MonoBehaviour
 {
     [SerializeField] private Image backImg;
+    public Image BackImg => backImg;
     [SerializeField] private Canvas backCanvas;
     [SerializeField] private Image frontImg;
+    public Image FrontImg => frontImg;
     [SerializeField] private Canvas frontCanvas;
 
-    private List<Texture2D> texList = new List<Texture2D>();
+    private Texture2D[] pictures;
+    private int currentPicIndex = 0;
 
-    public void UpdatePicture(Texture2D tex)
+    public void GetAllPicture(List<Texture2D> pictures)
     {
+        Array.Resize<Texture2D>(ref this.pictures, pictures.Count);
+        this.pictures = pictures.ToArray();
+    }
+
+    public Sprite GetNextTexture()
+    {
+        if (currentPicIndex >= pictures.Length) return null;
+
+        Texture2D tex = pictures[currentPicIndex];
+        currentPicIndex++;
         Sprite sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
-        frontImg.sprite = sprite;
+        return sprite;
     }
 
     public void ChgLayerOrder()
