@@ -22,3 +22,6 @@ MonoBehaviour:
     unitFormation: 4
     unitMoveStyle: 3
     unitArriveMoveStyle: 0
+  randomMode: 1
+  rndSpawnInfos: {fileID: 11400000, guid: af256faf66cbe2547af32ed1c871e1a4, type: 2}
+  totalGameTime: 60

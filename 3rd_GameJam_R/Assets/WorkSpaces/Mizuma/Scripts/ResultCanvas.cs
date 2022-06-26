@@ -9,7 +9,6 @@ public class ResultCanvas : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private CanvasGroup canvasGroup;
 
-    private bool isNextLastPicture = false;
     private bool isNextMoveFrontPicture = true;
 
     public void Init()
