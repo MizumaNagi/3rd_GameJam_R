@@ -13,9 +13,9 @@ public class PictureManager : MonoBehaviour
     [SerializeField] private Canvas frontCanvas;
 
     private Texture2D[] pictures;
-    public int[] copyCntArr;
-    public float[] minObjDistanceArr;
-    public int currentPicIndex = 0;
+    private int[] copyCntArr;
+    private float[] minObjDistanceArr;
+    private int currentPicIndex = 0;
     private int currentInfoIndex = 0;
 
     public Image BackImg => backImg;
