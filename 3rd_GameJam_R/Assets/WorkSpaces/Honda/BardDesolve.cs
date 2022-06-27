@@ -17,11 +17,12 @@ public class BardDesolve : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MainMaterial[0].material.SetFloat("_DesolveSpeed", alpha);
+        MainMaterial[0].material.SetFloat("_Intensity2", alpha2);
         MainMaterial[1].material.SetFloat("_DesolveSpeed", alpha);
-        MainMaterial[2].material.SetFloat("_Cutoff", alpha2);
+        MainMaterial[2].material.SetFloat("_Intensity2", alpha2);
+        MainMaterial[3].material.SetFloat("_Intensity2", alpha2);
 
-        alpha += Time.deltaTime;
-        alpha2-= Time.deltaTime;
+        alpha  += Time.deltaTime;
+        alpha2 -= Time.deltaTime;
     }
 }
