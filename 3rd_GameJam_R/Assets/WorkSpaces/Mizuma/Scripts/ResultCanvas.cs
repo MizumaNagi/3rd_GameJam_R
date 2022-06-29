@@ -8,14 +8,24 @@ public class ResultCanvas : MonoBehaviour
     [SerializeField] private PictureManager picManager;
     [SerializeField] private Animator anim;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private Camera renderCamera;
+    [SerializeField] private GameObject effectTrans;
 
     private bool isNextMoveFrontPicture = true;
 
     public void Init()
     {
         canvasGroup.alpha = 1;
+        renderCamera.enabled = true;
         (Texture2D[], int[], float[]) allPhotoInfo = photoCamera.GetAllPhotoInfo();
         picManager.GetAllPicture(allPhotoInfo.Item1, allPhotoInfo.Item2, allPhotoInfo.Item3);
+
+        if(allPhotoInfo.Item1.Length <= 0)
+        {
+            FinishResult();
+            return;
+        }
+
         UpdatePicture();
         UpdatePicture();
         NextAnimation();
@@ -47,6 +57,7 @@ public class ResultCanvas : MonoBehaviour
     private void FinishResult()
     {
         Debug.Log("Finish Result");
+        effectTrans.SetActive(true);
         anim.enabled = false;
     }
 }
