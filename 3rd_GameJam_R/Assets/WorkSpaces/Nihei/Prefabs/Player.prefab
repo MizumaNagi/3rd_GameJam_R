@@ -746,6 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438f19e16bf916a4d8815dc9d561590d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectManager: {fileID: 0}
   enableTakeLamp: {fileID: 4605247713307932418}
   takeValidRect:
     serializedVersion: 2

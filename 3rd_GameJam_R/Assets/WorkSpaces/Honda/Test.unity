@@ -699,6 +699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 03_FireWorks_Honda
       objectReference: {fileID: 0}
+    - target: {fileID: 4853987643685140542, guid: 38d1eaa7d4bc4d2438cd25aa7c27e24a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38d1eaa7d4bc4d2438cd25aa7c27e24a, type: 3}
 --- !u!1 &1002135538074168

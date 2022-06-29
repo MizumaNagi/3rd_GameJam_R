@@ -10,6 +10,8 @@ public class PhotoTarget : MonoBehaviour
     protected int takeScore = 10;
     [SerializeField]
     protected Transform targetOriginTrans = null;
+    [SerializeField]
+    private PoolableObject poolableObj;
 
     /// <summary>
     /// é ê^ÇéBÇÁÇÍÇΩç€ÇÃèàóù
@@ -18,6 +20,7 @@ public class PhotoTarget : MonoBehaviour
     {
         GameSceneProperties.Instance.AddGameScore(takeScore);
 
-        Destroy(gameObject);
+        poolableObj.DisableObject();
+        //Destroy(gameObject);
     }
 }

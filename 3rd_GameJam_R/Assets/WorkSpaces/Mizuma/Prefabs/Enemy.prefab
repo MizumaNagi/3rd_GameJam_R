@@ -95,6 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   takeScore: 10
   targetOriginTrans: {fileID: 6921616114914919254}
+  poolableObj: {fileID: 1768774681685061248}
 --- !u!1 &9165605996901960502
 GameObject:
   m_ObjectHideFlags: 0

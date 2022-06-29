@@ -20,10 +20,7 @@ public class TestFPSCamera : MonoBehaviour
     {
         float mouseVecX = Input.GetAxis("Mouse X");
         float mouseVecY = Input.GetAxis("Mouse Y");
-        /*
         float sensitivity = handMover.HandUp ? handUpCameraSensitivity : cameraSensitivity;
-        */
-        float sensitivity = 3;
 
         Vector3 angleXReflection = myTransform.localEulerAngles;
         angleXReflection.x += mouseVecY * -1 * sensitivity;

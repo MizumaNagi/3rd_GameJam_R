@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PhotoCamera : MonoBehaviour
 {
     [SerializeField]
+    private EffectManager effectManager;
+    [SerializeField]
     private Image enableTakeLamp = null;
     [SerializeField]
     private Rect takeValidRect = new Rect();
@@ -97,6 +99,7 @@ public class PhotoCamera : MonoBehaviour
             if (raycastHitPhotoTarget.transform != photoTarget.transform) continue;
 
             photoTarget.OnTakenPhoto();
+            effectManager.PlayParticle(ParticleType.BirdDead, targetRaycastHit.transform.position);
 
             // 撮影数カウント, 鳥とカメラの最短距離更新確認
             copyCntInPhoto++;

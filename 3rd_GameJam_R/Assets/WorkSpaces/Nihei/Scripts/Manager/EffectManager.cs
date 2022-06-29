@@ -27,5 +27,5 @@ public class EffectManager : AutoGenerateManagerBase<EffectManager>
 
 public enum ParticleType
 {
-    DroneExplosion = 0,
+    BirdDead = 0
 }

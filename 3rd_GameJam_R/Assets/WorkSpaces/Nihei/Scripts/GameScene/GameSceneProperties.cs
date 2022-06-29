@@ -6,6 +6,7 @@ public class GameSceneProperties : MonoBehaviour
 {
     public static GameSceneProperties Instance { get; private set; } = null;
     public int GameScore { get; private set; }
+    private float remTime = 60f;
 
     public GameSceneUICanvas UICanvas { get { return uICanvas; } }
 
@@ -26,5 +27,12 @@ public class GameSceneProperties : MonoBehaviour
     {
         GameScore += value;
         UICanvas.GameScoreUI.SetScoreText(GameScore);
+    }
+
+    public void UpdateTimeUI(float frameTime)
+    {
+        remTime -= frameTime;
+        remTime = Mathf.Max(remTime, 0f);
+        UICanvas.GameTimeUI.SetScoreText((int)remTime);
     }
 }
