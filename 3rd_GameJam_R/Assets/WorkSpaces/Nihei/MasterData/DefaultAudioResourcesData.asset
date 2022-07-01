@@ -16,3 +16,6 @@ MonoBehaviour:
   seClips:
   - {fileID: 8300000, guid: 6eb9bfa7772d36142afa233279143faa, type: 3}
   - {fileID: 8300000, guid: ca2381d45de447c408e8b34d40dc3f60, type: 3}
+  - {fileID: 8300000, guid: 466f545520e57e246be364cba7dce83a, type: 3}
+  - {fileID: 8300000, guid: 189d283248f7cf84aa29bcb96773e56b, type: 3}
+  - {fileID: 8300000, guid: 35451736c063f314f8ab6abc7bf97524, type: 3}

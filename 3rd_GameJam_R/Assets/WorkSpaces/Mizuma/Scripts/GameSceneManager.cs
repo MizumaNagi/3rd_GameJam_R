@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(1)]
 public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] disableScriptAfterGame;
     [SerializeField] private ResultCanvas resultCanvas;
 
-    private float gameTime = 60f;
+    private float gameTime = 5f;
     private bool isGameFinish = false;
 
     private void Start()
@@ -29,6 +30,14 @@ public class GameSceneManager : MonoBehaviour
         }
     }
 
+    private IEnumerator LateStart()
+    {
+        yield return null;
+
+        AudioManager.Instance.PlaySE("Bird", null, 0.1f, 1f, Mathf.Infinity, true);
+        AudioManager.Instance.PlaySE("Wind", null, 0.1f, 1f, Mathf.Infinity, true);
+    }
+
     private void GameStart()
     {
         isGameFinish = false;
@@ -37,6 +46,8 @@ public class GameSceneManager : MonoBehaviour
         {
             m.enabled = true;
         }
+
+        StartCoroutine(LateStart());
     }
 
     private void GameEnd()
