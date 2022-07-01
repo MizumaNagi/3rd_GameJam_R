@@ -2,24 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [DefaultExecutionOrder(1)]
 public class GameSceneManager : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour[] disableScriptAfterGame;
+    [SerializeField] private GameObject timeText;
+    [SerializeField] private GameObject operationText;
+    [SerializeField] private Canvas titleCanvas;
     [SerializeField] private ResultCanvas resultCanvas;
+    [SerializeField] private UnitGenerator unitGenerator;
 
-    private float gameTime = 5f;
+    private float gameTime = 10f;
+    private bool isGameStart = false;
     private bool isGameFinish = false;
+
+    public bool CanTakePicture { get { return (isGameStart == true && isGameFinish == false); } }
+
+    public static GameSceneManager Instance = null;
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+
+        if (Instance == null) Instance = this;
+    }
 
     private void Start()
     {
-        GameStart();
+        GameInit();
     }
 
     private void Update()
     {
-        if (isGameFinish == true) return;
+        if (Input.GetKeyDown(KeyCode.Return) && isGameStart == false)
+        {
+            GameStart();
+        }
+
+        if (isGameStart == false || isGameFinish == true) return;
 
         gameTime -= Time.deltaTime;
         GameSceneProperties.Instance.UpdateTimeUI(gameTime);
@@ -38,10 +59,21 @@ public class GameSceneManager : MonoBehaviour
         AudioManager.Instance.PlaySE("Wind", null, 0.1f, 1f, Mathf.Infinity, true);
     }
 
+    private void GameInit()
+    {
+        isGameStart = false;
+        isGameFinish = false;
+        timeText.SetActive(false);
+        operationText.SetActive(true);
+    }
+
     private void GameStart()
     {
-        isGameFinish = false;
+        isGameStart = true;
+        titleCanvas.enabled = false;
+        timeText.SetActive(true);
         GameSceneProperties.Instance.Init(gameTime);
+        unitGenerator.Init();
         foreach (MonoBehaviour m in disableScriptAfterGame)
         {
             m.enabled = true;
@@ -53,6 +85,8 @@ public class GameSceneManager : MonoBehaviour
     private void GameEnd()
     {
         isGameFinish = true;
+        timeText.SetActive(false);
+        operationText.SetActive(false);
         resultCanvas.Init();
         foreach (MonoBehaviour m in disableScriptAfterGame)
         {

@@ -11,7 +11,7 @@ public class UnitGenerator : MonoBehaviour
 
     private Vector3 enemyPoolWorldPos;
 
-    private void Start()
+    public void Init()
     {
         enemyPoolWorldPos = enemyPoolTrans.position;
         unitSpawnInfos.Init();

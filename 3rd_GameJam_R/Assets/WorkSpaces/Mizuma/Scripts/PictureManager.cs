@@ -23,7 +23,7 @@ public class PictureManager : MonoBehaviour
     public int[] CopyCntArr => copyCntArr;
     public float[] MinObjDistanceArr => minObjDistanceArr;
 
-    public void GetAllPicture(Texture2D[] pictures, int[] copyObjArr, float[] minObjDistanceArr)
+    public void SetAllPicture(Texture2D[] pictures, int[] copyObjArr, float[] minObjDistanceArr)
     {
         Array.Resize<Texture2D>(ref this.pictures, pictures.Length);
         this.pictures = pictures;

@@ -112,6 +112,9 @@ public class PhotoCamera : MonoBehaviour
 
         AudioManager.Instance.PlaySE("CameraShutter");
 
+        // ゲーム開始前、ゲーム終了後なら写真をリストに追加しない
+        if (GameSceneManager.Instance.CanTakePicture == false) return;
+
         // 撮った写真をリストに追加する
         RenderTexture cameraTexture = projectionCamera.targetTexture;
         Texture2D takenPhoto = new Texture2D(cameraTexture.width, cameraTexture.height, TextureFormat.RGBA32, false);
