@@ -8,7 +8,7 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private MonoBehaviour[] disableScriptAfterGame;
     [SerializeField] private ResultCanvas resultCanvas;
 
-    private float gameTime = 5f;
+    private float gameTime = 60f;
     private bool isGameFinish = false;
 
     private void Start()

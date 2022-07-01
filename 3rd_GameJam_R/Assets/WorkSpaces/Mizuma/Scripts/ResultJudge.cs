@@ -7,8 +7,8 @@ public class ResultJudge
     // ƒ‰ƒ“ƒN: S, A, B, C, F
     private string[] rankChar = { "S", "A", "B", "C", "F" };
     private int[] copyCntBorder = { 6, 4, 2, 1, 0 };
-    private float[] distanceBorder = { 5f, 10f, 20f, 30f, Mathf.Infinity };
-    private int[] addPointEachRank = { 9, 6, 3, 1, -1 };
+    private float[] distanceBorder = { 5f, 10f, 15f, 25f, Mathf.Infinity };
+    private int[] addPointEachRank = { 7, 4, 2, 1, -3 };
 
     public string[] RankChar => rankChar;
     public int[] AddPointEachRank => addPointEachRank;
