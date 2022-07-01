@@ -30,6 +30,7 @@ public class TestFPSCamera : MonoBehaviour
 
         Vector3 resultAngle = myTransform.localEulerAngles;
         resultAngle.y += mouseVecX * sensitivity;
+        resultAngle.z = 0f;
         myTransform.localEulerAngles = resultAngle;
     }
 }
