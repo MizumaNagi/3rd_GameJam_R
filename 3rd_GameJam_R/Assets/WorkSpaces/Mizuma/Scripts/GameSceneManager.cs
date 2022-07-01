@@ -14,7 +14,7 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private ResultCanvas resultCanvas;
     [SerializeField] private UnitGenerator unitGenerator;
 
-    private float gameTime = 10f;
+    private float gameTime = 60f;
     private bool isGameStart = false;
     private bool isGameFinish = false;
 
@@ -24,6 +24,12 @@ public class GameSceneManager : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+
+        #if UNITY_EDITOR
+        #else
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        #endif
 
         if (Instance == null) Instance = this;
     }
