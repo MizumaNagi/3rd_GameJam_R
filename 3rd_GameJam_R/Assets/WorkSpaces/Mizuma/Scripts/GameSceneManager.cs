@@ -14,7 +14,7 @@ public class GameSceneManager : MonoBehaviour
     [SerializeField] private ResultCanvas resultCanvas;
     [SerializeField] private UnitGenerator unitGenerator;
 
-    private float gameTime = 60f;
+    private float gameTime = 10f;
     private bool isGameStart = false;
     private bool isGameFinish = false;
 
